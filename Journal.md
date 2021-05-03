@@ -43,7 +43,7 @@ When adding the later sets of data for everything else
 * `sed -i -- 's/GO$//g' ./myNorthwindDataScript.sql`
 * `sed -i -- 's/)$/);/g' ./myNorthwindDataScript.sql`
 
-Specifically in the case of adding entries for the Orders table
+Specifically in the case of adding entries for the Orders table (did this last)
 * `sed -i -- 's/INSERT "/INSERT INTO "/g' ./myNorthwindDataScript.sql`
 * `sed -ie -- 's|["\'']|`|g' ./myNorthwindDataScript.sql`
 * `sed -ie -- 's|'\'')$|'\'');|g' ./myNorthwindDataScript.sql`
