@@ -176,9 +176,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `northwind`.`order_details`
+-- Table `northwind`.`order details`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `northwind`.`order_details` (
+CREATE TABLE IF NOT EXISTS `northwind`.`order details` (
   `OrderID` INT NOT NULL,
   `ProductID` INT NOT NULL,
   `UnitPrice` DECIMAL(15,2) NOT NULL DEFAULT 0,
