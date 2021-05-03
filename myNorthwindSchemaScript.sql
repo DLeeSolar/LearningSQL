@@ -175,6 +175,33 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
+-- -----------------------------------------------------
+-- Table `northwind`.`order_details`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `northwind`.`order_details` (
+  `OrderID` INT NOT NULL,
+  `ProductID` INT NOT NULL,
+  `UnitPrice` DECIMAL(15,2) NOT NULL DEFAULT 0,
+  `Quantity` SMALLINT NOT NULL DEFAULT 1,
+  `Discount` REAL NOT NULL DEFAULT 0,
+  PRIMARY KEY CLUSTERED (`OrderID`,`ProductID`),
+  FOREIGN KEY (`OrderID`) REFERENCES `northwind`.`orders` (`OrderID`),
+  FOREIGN KEY (`ProductID`) REFERENCES `northwind`.`products` (`ProductID`),
+  -- Northwind has some CHECKs here too
+  -- CONSTRAINT "CK_Discount" CHECK (Discount >= 0 and (Discount <= 1)),
+  -- CONSTRAINT "CK_Quantity" CHECK (Quantity > 0),
+  -- CONSTRAINT "CK_UnitPrice" CHECK (UnitPrice >= 0)
+  INDEX `OrderID` (`OrderID` ASC),
+  INDEX `Orders_Order_Details` (`OrderID` ASC),
+  INDEX `ProductID` (`ProductID` ASC),
+  INDEX `Products_Order_Details` (`ProductID` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- Northwind then creates a bunch of VIEWS, but I'll skip this for now.
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
