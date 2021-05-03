@@ -43,6 +43,14 @@ When adding the later sets of data for everything else
 * `sed -i -- 's/GO$//g' ./myNorthwindDataScript.sql`
 * `sed -i -- 's/)$/);/g' ./myNorthwindDataScript.sql`
 
+Specifically in the case of adding entries for the Orders table
+* `sed -i -- 's/INSERT "/INSERT INTO "/g' ./myNorthwindDataScript.sql`
+* `sed -ie -- 's|["\'']|`|g' ./myNorthwindDataScript.sql`
+* `sed -ie -- 's|'\'')$|'\'');|g' ./myNorthwindDataScript.sql`
+* `sed -i -- 's/GO$//g' ./myNorthwindDataScript.sql`
+* `sed -i -- 's/go$//g' ./myNorthwindDataScript.sql`
+
+
 Next block of data to add is the Order Details. You'll need to clean it again before it can be added too. 
 
 ### Testing Data Additions
