@@ -75,6 +75,41 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
+-- -----------------------------------------------------
+-- Table `northwind`.`shippers`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `northwind`.`shippers` (
+  `ShipperID` INT NOT NULL AUTO_INCREMENT,
+  `CompanyName` VARCHAR(40) NOT NULL,
+  `Phone` VARCHAR(24) NULL DEFAULT NULL,
+  PRIMARY KEY CLUSTERED (`ShipperID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `northwind`.`suppliers`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `northwind`.`suppliers` (
+  `SupplierID` INT NOT NULL AUTO_INCREMENT,
+  `CompanyName` VARCHAR(40) NOT NULL,
+  `ContactName` VARCHAR(30) NULL DEFAULT NULL,
+  `ContactTitle` VARCHAR(30) NULL DEFAULT NULL,
+  `Address` VARCHAR(60) NULL DEFAULT NULL,
+  `City` VARCHAR(15) NULL DEFAULT NULL,
+  `Region` VARCHAR(15) NULL DEFAULT NULL,
+  `PostalCode` VARCHAR(10) NULL DEFAULT NULL,
+  `Country` VARCHAR(15) NULL DEFAULT NULL,
+  `Phone` VARCHAR(24) NULL DEFAULT NULL,
+  `Fax` VARCHAR(24) NULL DEFAULT NULL,
+  `HomePage` LONGTEXT NULL DEFAULT NULL,
+  PRIMARY KEY CLUSTERED (`SupplierID`),
+  INDEX `CompanyName` (`CompanyName` ASC),
+  INDEX `PostalCode` (`PostalCode` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
