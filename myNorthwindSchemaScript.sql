@@ -115,7 +115,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `northwind`.`orders` (
   `OrderID` INT NOT NULL AUTO_INCREMENT,
-  `CustomerID` INT NULL DEFAULT NULL,
+  `CustomerID` VARCHAR(5) NOT NULL,
   `EmployeeID` INT NULL DEFAULT NULL,
   `OrderDate` DATETIME NULL DEFAULT NULL,
   `RequiredDate` DATETIME NULL DEFAULT NULL,
