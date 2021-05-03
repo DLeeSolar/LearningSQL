@@ -110,6 +110,71 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
+-- -----------------------------------------------------
+-- Table `northwind`.`orders`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `northwind`.`orders` (
+  `OrderID` INT NOT NULL AUTO_INCREMENT,
+  `CustomerID` INT NULL DEFAULT NULL,
+  `EmployeeID` INT NULL DEFAULT NULL,
+  `OrderDate` DATETIME NULL DEFAULT NULL,
+  `RequiredDate` DATETIME NULL DEFAULT NULL,
+  `ShippedDate` DATETIME NULL DEFAULT NULL,
+  `ShipVia` INT NULL DEFAULT NULL,
+  `Freight` DECIMAL(15,2) NULL DEFAULT 0,
+  `ShipName` VARCHAR(40) NULL DEFAULT NULL,
+  `ShipAddress` VARCHAR(60) NULL DEFAULT NULL,
+  `ShipCity` VARCHAR(15) NULL DEFAULT NULL,
+  `ShipRegion` VARCHAR(15) NULL DEFAULT NULL,
+  `ShipPostalCode` VARCHAR(10) NULL DEFAULT NULL,
+  `ShipCountry` VARCHAR(15) NULL DEFAULT NULL,
+  PRIMARY KEY CLUSTERED (`OrderID`),
+  FOREIGN KEY (`CustomerID`) REFERENCES `northwind`.`customers` (`CustomerID`),
+  FOREIGN KEY (`EmployeeID`) REFERENCES `northwind`.`employees` (`EmployeeID`),
+  FOREIGN KEY (`ShipVia`) REFERENCES `northwind`.`shippers` (`ShipperID`),
+  INDEX `CustomerID` (`CustomerID` ASC),
+  INDEX `CustomersOrders` (`CustomerID` ASC),
+  INDEX `EmployeeID` (`EmployeeID` ASC),
+  INDEX `EmployeesOrders` (`EmployeeID` ASC),
+  INDEX `OrderDate` (`OrderDate` ASC),
+  INDEX `ShippedDate` (`ShippedDate` ASC),
+  INDEX `ShippersOrders` (`ShipVia` ASC),
+  INDEX `ShipPostalCode` (`ShipPostalCode` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `northwind`.`products`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `northwind`.`products` (
+  `ProductID` INT NOT NULL AUTO_INCREMENT,
+  `ProductName` VARCHAR(40) NOT NULL,
+  `SupplierID` INT NULL DEFAULT NULL,
+  `CategoryID` INT NULL DEFAULT NULL,
+  `QuantityPerUnit` VARCHAR(20) NULL DEFAULT NULL,
+  `UnitPrice` DECIMAL(15,2) NULL DEFAULT 0,
+  `UnitsInStock` SMALLINT NULL DEFAULT 0,
+  `UnitsOnOrder` SMALLINT NULL DEFAULT 0,
+  `ReorderLevel` SMALLINT NULL DEFAULT 0,
+  `Discontinued` BIT NOT NULL DEFAULT 0,
+  PRIMARY KEY CLUSTERED (`ProductID`),
+  FOREIGN KEY (`CategoryID`) REFERENCES `northwind`.`categories` (`CategoryID`),
+  FOREIGN KEY (`SupplierID`) REFERENCES `northwind`.`suppliers` (`SupplierID`),
+  -- Northwind has some CHECKs here too
+  -- CONSTRAINT "CK_Products_UnitPrice" CHECK (UnitPrice >= 0),
+  -- CONSTRAINT "CK_ReorderLevel" CHECK (ReorderLevel >= 0),
+  -- CONSTRAINT "CK_UnitsInStock" CHECK (UnitsInStock >= 0),
+  -- CONSTRAINT "CK_UnitsOnOrder" CHECK (UnitsOnOrder >= 0)
+  INDEX `CategoryProducts` (`CategoryID` ASC),
+  INDEX `CategoryID` (`CategoryID` ASC),
+  INDEX `ProductName` (`ProductName` ASC),
+  INDEX `SupplierID` (`SupplierID` ASC),
+  INDEX `SuppliersProducts` (`SupplierID` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
